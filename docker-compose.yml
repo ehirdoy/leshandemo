@@ -1,0 +1,17 @@
+version: '3'
+services:
+    gw:
+        image: 'jeanblanchard/busybox-java'
+        ports:
+                - '8080:8080'
+        volumes:
+            - '.:/app'
+        command:    java -jar /app/leshan-server-demo.jar
+
+    dev:
+        depends_on:
+            - 'gw'
+        image: 'jeanblanchard/busybox-java'
+        volumes:
+            - '.:/app'
+        command: java -jar /app/leshan-client-demo.jar -u gw
