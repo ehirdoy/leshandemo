@@ -1,5 +1,11 @@
 version: '3'
 services:
+    cf-simplefile-server:
+        build: ./californium
+        volumes:
+            - './passwd:/data/passwd'
+        command: java -jar /californium/demo-apps/cf-simplefile-server/target/cf-simplefile-server-2.3.0-SNAPSHOT.jar
+
     gw:
         image: 'jeanblanchard/busybox-java'
         ports:
